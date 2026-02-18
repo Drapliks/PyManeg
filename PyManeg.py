@@ -2,6 +2,19 @@ from tkinter import *
 import os
 import sys
 
+def get_terminal():
+    shell_pid = os.getppid()
+    with open(f"/proc/{shell_pid}/status", "r") as f:
+        for line in f:
+            if line.startswith("PPid:"):
+                term_pid = line.split()[1]
+                break
+    with open(f"/proc/{term_pid}/comm", "r") as f:
+        return f.read().strip()
+
+term = get_terminal()
+print('Terminal ' + term)
+
 main = Tk()
 main.geometry("330x350")
 main.title("Pymaneg")
@@ -13,7 +26,7 @@ os.system('mkdir ~/PythonProjects')
 def openfilewin():
 
     def openfile():
-         os.system('exec kitty nvim ~/PythonFiles/' + openfnamespace.get() + ".py")
+         os.system('exec ' + term + ' nvim ~/PythonFiles/' + openfnamespace.get() + ".py")
          openfilewindow.destroy()
     
 
@@ -131,7 +144,7 @@ def exitfromapp():
 def launchfilewin():
 
     def launchfile():
-        os.system('exec kitty python ~/PythonFiles/' + laucnhfnamespace.get() + '.py')
+        os.system('exec ' + term + ' python ~/PythonFiles/' + laucnhfnamespace.get() + '.py')
     
     launchfilewindow = Tk()
     launchfilewindow.geometry("390x130")
@@ -154,7 +167,7 @@ def openprojectwin():
     def openprj():
 
         def openmainpy():
-            os.system('exec kitty nvim ~/PythonProjects/' + openpnamespace.get() + '/main.py')
+            os.system('exec ' + term + ' nvim ~/PythonProjects/' + openpnamespace.get() + '/main.py')
             
         def exitprj():
             openprjwindow.destroy()
@@ -185,7 +198,7 @@ def openprojectwin():
         def openfileinprj():
 
             def openfileip():
-                os.system('exec kitty nvim ~/PythonProjects/' + openpnamespace.get() + '/' + openfipnamespace.get() + '.py')
+                os.system('exec ' + term + ' nvim ~/PythonProjects/' + openpnamespace.get() + '/' + openfipnamespace.get() + '.py')
                 openfileinprjwindow.destroy()
 
             openfileinprjwindow = Tk()
