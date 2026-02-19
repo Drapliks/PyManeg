@@ -16,8 +16,8 @@ term = get_terminal()
 print('Terminal ' + term)
 
 main = Tk()
-main.geometry("330x400")
-main.title("Pymaneg")
+main.geometry("330x450")
+main.title("PyManeg")
 main.resizable(width=False, height=False)
 
 os.system('mkdir ~/PythonFiles')
@@ -68,7 +68,7 @@ def newfilewin():
     newfilewindow.mainloop()
 
 def delfilewin():
-
+    
     def delfile():
         
         def yespress():
@@ -110,6 +110,7 @@ def delfilewin():
 
     delfilewindow.mainloop()
 
+    
 def renamewin():
 
     def rename():
@@ -275,13 +276,57 @@ def newprojectwin():
     newprjbutt = Button(newprjwindow, text="Create", command=newprj)
     newprjbutt.pack(side="left")
 
+def delprojectwin():
+
+    def delproject():
+        
+        def yespress():
+            os.system('rm -rf ~/PythonProjects/' + delpnamespace.get())
+            delfilewindow.destroy()
+            areusurewin.destroy()
+
+        def nopress():
+            delfilewindow.destroy()
+            areusurewin.destroy()
+
+        areusurewin = Tk()
+        areusurewin.geometry("230x165")
+        areusurewin.resizable(width=False, height=False)
+        areusurewin.title("Sure?")
+
+        quest = Label(areusurewin, text='Are you sure?')
+        quest.pack()
+
+        yesbutt = Button(areusurewin, text="Yes", command=yespress)
+        yesbutt.pack(side='left')
+
+        nobutt = Button(areusurewin, text='No', command=nopress)
+        nobutt.pack(side='right')
+        
+    delfilewindow = Tk()
+    delfilewindow.geometry("390x130")
+    delfilewindow.resizable(width=False, height=False)
+    delfilewindow.title("Delete project")
+
+    enternfnametxt = Label(delfilewindow, text="Enter project name:")
+    enternfnametxt.pack(side="left")
+
+    delpnamespace = Entry(delfilewindow)
+    delpnamespace.pack(side="left")
+
+    delbutt = Button(delfilewindow, text="Delete", command=delproject)
+    delbutt.pack(side="left")
+
+    delfilewindow.mainloop()
+
+
 welcometxt = Label(text="Welcome!")
 welcometxt.pack()
 
-empty = Label(main, text="    ")
+empty = Label(main, text="")
 empty.pack()
 
-filestxt = Label(main, text="Files:")
+filestxt = Label(main, text="----Files----")
 filestxt.pack()
 
 openfilebutt = Button(main, text="Open file", command=openfilewin)
@@ -299,11 +344,13 @@ renamefilebutt.pack()
 delfilebutt = Button(main, text="Delete file", command=delfilewin)
 delfilebutt.pack()
 
+parter = Label(main, text="------------")
+parter.pack()
 
-empty2 = Label(main, text="      ")
+empty2 = Label(main, text="")
 empty2.pack()
 
-projectstxt = Label(main, text="Projects:")
+projectstxt = Label(main, text="----Projects----")
 projectstxt.pack()
 
 openprojectbutt = Button(main, text="Open project", command=openprojectwin)
@@ -312,6 +359,11 @@ openprojectbutt.pack()
 newprojectbutt = Button(main, text="New project", command=newprojectwin)
 newprojectbutt.pack()
 
+delprojectbutt = Button(main, text="Delete project", command=delprojectwin)
+delprojectbutt.pack()
+
+parter2 = Label(main, text="------------")
+parter2.pack()
 
 exitbutt = Button(main, text="Exit", command=exitfromapp)
 exitbutt.pack(side="bottom")
