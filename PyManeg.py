@@ -16,7 +16,7 @@ term = get_terminal()
 print('Terminal ' + term)
 
 main = Tk()
-main.geometry("330x350")
+main.geometry("330x400")
 main.title("Pymaneg")
 main.resizable(width=False, height=False)
 
@@ -278,17 +278,17 @@ def newprojectwin():
 welcometxt = Label(text="Welcome!")
 welcometxt.pack()
 
+empty = Label(main, text="")
+empty.pack()
+
+filestxt = Label(main, text="Files:")
+filestxt.pack()
+
 openfilebutt = Button(main, text="Open file", command=openfilewin)
 openfilebutt.pack()
 
 newfilebutt = Button(main, text="New file", command=newfilewin)
 newfilebutt.pack()
-
-openprojectbutt = Button(main, text="Open project", command=openprojectwin)
-openprojectbutt.pack()
-
-newprojectbutt = Button(main, text="New project", command=newprojectwin)
-newprojectbutt.pack()
 
 launchfilebutt = Button(main, text="Launch file", command=launchfilewin)
 launchfilebutt.pack()
@@ -298,6 +298,20 @@ renamefilebutt.pack()
 
 delfilebutt = Button(main, text="Delete file", command=delfilewin)
 delfilebutt.pack()
+
+
+empty2 = Label(main, text="")
+empty2.pack()
+
+projectstxt = Label(main, text="Projects:")
+projectstxt.pack()
+
+openprojectbutt = Button(main, text="Open project", command=openprojectwin)
+openprojectbutt.pack()
+
+newprojectbutt = Button(main, text="New project", command=newprojectwin)
+newprojectbutt.pack()
+
 
 exitbutt = Button(main, text="Exit", command=exitfromapp)
 exitbutt.pack(side="bottom")
