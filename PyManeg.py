@@ -278,7 +278,7 @@ def newprojectwin():
 welcometxt = Label(text="Welcome!")
 welcometxt.pack()
 
-empty = Label(main, text="")
+empty = Label(main, text="    ")
 empty.pack()
 
 filestxt = Label(main, text="Files:")
@@ -300,7 +300,7 @@ delfilebutt = Button(main, text="Delete file", command=delfilewin)
 delfilebutt.pack()
 
 
-empty2 = Label(main, text="")
+empty2 = Label(main, text="      ")
 empty2.pack()
 
 projectstxt = Label(main, text="Projects:")
