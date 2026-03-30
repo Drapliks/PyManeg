@@ -5,6 +5,8 @@ import os
 
 def openProject():
 
+    def closeProject():
+        projectWindow.destroy()
     def openMaindotPy():
         path2file = path2Dir + "/main.py"
         
@@ -139,6 +141,13 @@ def openProject():
     openMaindotPyButt = Button(projectWindow, text="Open main.py", command=openMaindotPy)
     openMaindotPyButt.pack()
 
+    emptySpace = Label(projectWindow, text="")
+    emptySpace.pack()
+    emptySpace = Label(projectWindow, text="")
+    emptySpace.pack()
+    emptySpace = Label(projectWindow, text="")
+    emptySpace.pack()
+
     newFileInProjectButt = Button(projectWindow, text="New file", command=newFile)
     newFileInProjectButt.pack()
     
@@ -147,6 +156,9 @@ def openProject():
 
     deleteFileInProjectButt = Button(projectWindow, text="Delete file", command=deleteFile)
     deleteFileInProjectButt.pack()
+
+    exitButt = Button(projectWindow, text="Exit", command=closeProject)
+    exitButt.pack(side=BOTTOM)
 
 if __name__ == "__main__":
     root = Tk()
