@@ -6,24 +6,24 @@ import os
 def newFile():
     
     def openDir():
-        path2file = filedialog.askdirectory() + " " + newFileName.get()
+        path2file = filedialog.askdirectory() + "/" + newFileName.get()
 
         os.system("touch " + path2file)
 
-        fileNameWindow.destroy()
+        newfileNameWindow.destroy()
 
-    fileNameWindow = Toplevel()
-    fileNameWindow.geometry("390x130")
-    fileNameWindow.resizable(width=False, height=False)
-    fileNameWindow.title("New file")
+    newfileNameWindow = Toplevel()
+    newfileNameWindow.geometry("390x130")
+    newfileNameWindow.resizable(width=False, height=False)
+    newfileNameWindow.title("New file")
 
-    enterNewFileNameText = Label(fileNameWindow, text="Enter file name:")
+    enterNewFileNameText = Label(newfileNameWindow, text="Enter file name:")
     enterNewFileNameText.pack(side=LEFT)
     
-    newFileName = Entry(fileNameWindow)
+    newFileName = Entry(newfileNameWindow)
     newFileName.pack(side=LEFT)
     
-    createbutt = Button(fileNameWindow, text="Create", command=openDir)
+    createbutt = Button(newfileNameWindow, text="Create", command=openDir)
     createbutt.pack(side=LEFT)
 
 if __name__ == "__main__":
