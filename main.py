@@ -28,9 +28,6 @@ newFileButt.pack()
 openFileButt = Button(root, text="Open file", command=openFile)
 openFileButt.pack()
 
-renameFileButt = Button(root, text="Rename file", command=renameFile)
-renameFileButt.pack()
-
 deleteFileButt = Button(root, text="Delete file", command=deleteFile)
 deleteFileButt.pack()
 
