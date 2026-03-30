@@ -1,11 +1,13 @@
 from tkinter import *
+from tkinter import ttk
+from tkinter import filedialog
 import os
 import sys
 
-main = Tk()
-main.geometry("330x450")
-main.title("PyManeg")
-main.resizable(width=False, height=False)
+root = Tk()
+root.geometry("330x450")
+root.title("Pysapce")
+root.resizable(width=False, height=False)
 
 os.makedirs(os.path.expanduser('~/PythonFiles'), exist_ok=True)
 os.makedirs(os.path.expanduser('~/PythonProjects'), exist_ok=True)
@@ -47,28 +49,28 @@ def check_project_exists(projectname, should_exist=True):
     return True
 
 def openfilewin():
-    def openfile():
-        filename = openfnamespace.get().strip()
-        if not filename:
-            show_error("Please enter a file name!")
-            return
-        if check_file_exists(filename, should_exist=True):
-            os.system(f'exec kitty nvim ~/PythonFiles/{filename}.py')
-            openfilewindow.destroy()
-    
-    openfilewindow = Toplevel()
-    openfilewindow.geometry("390x130")
-    openfilewindow.resizable(width=False, height=False)
-    openfilewindow.title("Open file")
-    
-    enterofnametxt = Label(openfilewindow, text="Enter file name:")
-    enterofnametxt.pack(side="left")
-    
-    openfnamespace = Entry(openfilewindow)
-    openfnamespace.pack(side="left")
-    
-    openbutt = Button(openfilewindow, text="Open", command=openfile)
-    openbutt.pack(side="left")
+    File2open = filedialog.askopenfilename()
+
+    def saveFile():
+        if File2open != "":
+            text = codeEditor.get("1.0", END)
+            with open(File2open, "w") as file:
+                file.write(text)
+
+    codeSpace = Toplevel()
+    codeSpace.title(File2open)
+
+    codeEditor = Text(codeSpace)
+    codeEditor.pack()
+
+    savefilebutt = Button(codeSpace, text="Save file", command=saveFile)
+    savefilebutt.pack(side=LEFT)
+
+    if File2open != "":
+        with open(File2open, "r") as file:
+            text =file.read()
+            codeEditor.delete("1.0", END)
+            codeEditor.insert("1.0", text)
 
 def newfilewin():
     def newfile():
@@ -378,52 +380,53 @@ def delprojectwin():
     delbutt = Button(delfilewindow, text="Delete", command=confirm_delete)
     delbutt.pack(side="left")
 
-welcometxt = Label(main, text="Welcome!")
+welcometxt = Label(root, text="Welcome!")
 welcometxt.pack()
 
-empty = Label(main, text="")
+empty = Label(root, text="")
 empty.pack()
 
-filestxt = Label(main, text="----Files----")
+filestxt = Label(root, text="----Files----")
 filestxt.pack()
 
-openfilebutt = Button(main, text="Open file", command=openfilewin)
+openfilebutt = Button(root, text="Open file", command=openfilewin)
 openfilebutt.pack()
 
-newfilebutt = Button(main, text="New file", command=newfilewin)
+newfilebutt = Button(root, text="New file", command=newfilewin)
 newfilebutt.pack()
 
-launchfilebutt = Button(main, text="Launch file", command=launchfilewin)
+launchfilebutt = Button(root, text="Launch file", command=launchfilewin)
 launchfilebutt.pack()
 
-renamefilebutt = Button(main, text="Rename file", command=renamewin)
+renamefilebutt = Button(root, text="Rename file", command=renamewin)
 renamefilebutt.pack()
 
-delfilebutt = Button(main, text="Delete file", command=delfilewin)
+delfilebutt = Button(root, text="Delete file", command=delfilewin)
 delfilebutt.pack()
 
-parter = Label(main, text="------------")
+parter = Label(root, text="------------")
 parter.pack()
 
-empty2 = Label(main, text="")
+empty2 = Label(root, text="")
 empty2.pack()
 
-projectstxt = Label(main, text="----Projects----")
+projectstxt = Label(root, text="----Projects----")
 projectstxt.pack()
 
-openprojectbutt = Button(main, text="Open project", command=openprojectwin)
+openprojectbutt = Button(root, text="Open project", command=openprojectwin)
 openprojectbutt.pack()
 
-newprojectbutt = Button(main, text="New project", command=newprojectwin)
+newprojectbutt = Button(root, text="New project", command=newprojectwin)
 newprojectbutt.pack()
 
-delprojectbutt = Button(main, text="Delete project", command=delprojectwin)
+delprojectbutt = Button(root, text="Delete project", command=delprojectwin)
 delprojectbutt.pack()
 
-parter2 = Label(main, text="------------")
+parter2 = Label(root, text="------------")
 parter2.pack()
 
-exitbutt = Button(main, text="Exit", command=exitfromapp)
+exitbutt = Button(root, text="Exit", command=exitfromapp)
 exitbutt.pack(side="bottom")
 
-main.mainloop()
+root.mainloop()
+

@@ -1,3 +1,4 @@
-# PyManeg
-A simple Python scripts/projects manager that runs on Neovim and was also written in Python.
+# Pysapce
 # README.md is being written...
+
+
